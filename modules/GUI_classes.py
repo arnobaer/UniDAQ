@@ -20,7 +20,7 @@ from PyQt5.QtWidgets import *
 
 from GUI_event_loop import *
 from utilities import newThread, help_functions, measurement_job_generation
-from bad_strip_detection import *
+
 
 l = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ class GUI_classes(GUI_event_loop, QWidget):
         self.final_tabs = []
         self.ui_plugins = {}
         self.shell = shell
-        self.analysis = stripanalysis(self) # Not very good it is a loop condition
+        #self.analysis = stripanalysis(self) # Not very good it is a loop condition
 
         # Load ui plugins
         self.load_plugins()

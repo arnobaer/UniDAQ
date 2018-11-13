@@ -17,7 +17,7 @@
     "set_beep": "SYST:BEEP:STAT", 
     "Connection_type": "GPIB:16", 
     "default_voltage": "0", 
-    "Display_name": "SMU2", 
+    "Display_name": "Bias_SMU",
     "set_reading_mode": "FORM:ELEM ", 
     "set_reading_count": "TRIG:COUN ", 
     "set_measure_voltage": "SENS:FUNC 'VOLT'", 
