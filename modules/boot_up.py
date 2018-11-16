@@ -122,7 +122,7 @@ class loading_init_files:
 
         self.pad_files_dict = pad_data_dict.copy()
 
-        # Update the projects and sensors which are included and can be measured
+        # Update the projects and sensors which are included and can be measured (so no declaration needed prior)
         self.default_values_dict["Defaults"]["Sensor_types"] = {}
         for project in self.pad_files_dict:
             self.default_values_dict["Defaults"]["Sensor_types"].update({str(project): [sensor for sensor in self.pad_files_dict[project]]})

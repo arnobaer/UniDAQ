@@ -1,5 +1,5 @@
-Dataexchange
-============
+Data Exchange
+=============
 
 UniDAQ is a sophisticated program and works with multiple thread amd eventloops
 

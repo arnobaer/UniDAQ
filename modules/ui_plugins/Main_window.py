@@ -98,8 +98,8 @@ class Main_window:
 
 
         self.final_job.update({"dynamicwaiting": {"StartVolt": 0,
-                                                  "EndVolt": float(self.dynamic.complience_IV.value()),
-                                                  "Steps": float(self.dynamic.complience_IV.value()),
+                                                  "EndVolt": float(self.dynamic.endVolt_IV.value()),
+                                                  "Steps": float(self.dynamic.steps_IV.value()),
                                                   "Complience": float(self.dynamic.complience_IV.value()),
                                                   "num_of_points": 30,
                                                   "Save_data": True,

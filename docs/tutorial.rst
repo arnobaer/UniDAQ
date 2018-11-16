@@ -28,14 +28,6 @@ I have set up one for you here, you can simply copy it ::
     Projects: # The project names of your sensor batches etc. musst be conform with the sensors entries
         - Test Project
 
-    Sensor_types: # Different sensor types in the various projects
-        Test Project:
-            - Irradiation
-
-
-    measurement_types: # Different measurement types which can be conducted
-        - IV
-
     measurement_order:
         - IVscan
 
