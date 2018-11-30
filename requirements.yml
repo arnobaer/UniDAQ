@@ -31,6 +31,7 @@ dependencies:
   - libpng=1.6.34=h325896a_0
   - llvmlite=0.22.0=py27ha7086b9_0
   - menuinst=1.4.11=py27h0c8e037_0
+  - cython=0.28.5
   - mkl=2018.0.2=1
   - mkl_fft=1.0.1=py27hc997a72_0
   - numpy=1.14.2=py27h0bb1d87_1
