@@ -4,8 +4,11 @@
 # -Connects to all system relevant instruments
 # -Initialize statistics and state control
 
-import imp, os, threading, yaml
+import imp
 import logging
+import os
+import yaml
+
 import numpy as np
 
 l = logging.getLogger(__name__)
@@ -74,11 +77,30 @@ class loading_init_files:
 
         #Get all all files in the directories
         self.__install_path = os.path.realpath(__file__) # Obtain the install path of this module
-        self.list_device_init = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/devices/"))
-        self.list_default_values = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/default/"))
-        self.list_pad_files_folders = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/pad_files/"))
 
-        #print self.list_default_values
+        # Check if the folder devices already exists or create the folder
+        if os.path.isdir(os.path.normpath(self.__install_path[:-19] + "/init/devices/")):
+            self.list_device_init = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/devices/"))
+        else:
+            l.warning("Devices folder did not exist. Created one!")
+            os.makedirs(os.path.normpath(self.__install_path[:-19] + "/init/devices/"))
+            self.list_device_init = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/devices/"))
+
+        # Check if the folder defaults already exists or create the folder
+        if os.path.isdir(os.path.normpath(self.__install_path[:-19] + "/init/default/")):
+                self.list_default_values = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/default/"))
+        else:
+            l.warning("Defaults folder did not exist. Created one!")
+            os.makedirs(os.path.normpath(self.__install_path[:-19] + "/init/default/"))
+            self.list_default_values = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/default/"))
+
+        # Check if the folder defaults already exists or create the folder
+        if os.path.isdir(os.path.normpath(self.__install_path[:-19] + "/init/pad_files/")):
+            self.list_pad_files_folders = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/pad_files/"))
+        else:
+            l.warning("Pad files folder did not exist. Created one!")
+            os.makedirs(os.path.normpath(self.__install_path[:-19] + "/init/pad_files/"))
+            self.list_pad_files_folders = os.listdir(os.path.normpath(self.__install_path[:-19] + "/init/pad_files/"))
 
         # Dictionaries for the types of input files
         self.devices_dict = {}
@@ -274,7 +296,6 @@ class connect_to_devices:
         self.vcw = vcw
         self.device_dict = device_dict
 
-
         self.vcw.show_instruments() # Lists all devices which are connected to the PC
 
         for device in device_dict.keys():  # device_dict is a dictionary containing dictionaries
@@ -320,9 +341,14 @@ class connect_to_devices:
                         print "Serial instrument at port " + str(connection_type.split(":")[-1]) + " is not connected."
 
 
-                elif "IP" in str(connection_type).upper():
-                    # This maneges the connections for IP devices
-                    pass
+                elif "TCP/IP::SOCKET::" in str(connection_type).upper():
+                    # This manages the connections for raw TCP/IP devices
+                    success = self.vcw.connect_to("TCPIP::SOCKET::" + connection_type.split("::")[3] + "::" + connection_type.split("::")[2], device_IDN, device_IDN=IDN_query)  # Connects to the device Its always ASRL*::INSTR
+                    if success:
+                        l.info("Connection established to device: " + str(device) + " at ")
+                    else:
+                        l.error("Connection could not be established to device: " + str(device))
+                        print "Connection could not be established to device: " + str(device)
 
                 # Add other connection types
 
