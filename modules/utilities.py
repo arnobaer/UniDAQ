@@ -13,25 +13,18 @@
 #Ramping
 # ramp_voltage
 
-import datetime
-import logging
-import os
-import os.path
-import re
-import sys
-import threading
-import time
-import yaml
+import os, sys, os.path, re
 from time import sleep
-
-import numpy as np
-import pyqtgraph as pg
+import time
+import threading
+import logging, yaml
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication
-from numpy.linalg import norm, det, qr, inv
-
+import numpy as np
+from numpy.linalg import solve, norm, det, qr, inv
+import datetime
+import pyqtgraph as pg
 import VisaConnectWizard
-
+from PyQt5.QtWidgets import QApplication
 #from __future__ import print_function # Needed for the rtd functions that its written in 3
 
 l = logging.getLogger(__name__)
@@ -377,7 +370,7 @@ class help_functions:
         device_dict[command] => ["comA", "comB"], then both commands will be build with the values and a list of both commands will be returned
 
 
-        :param device_dict:
+        :param device: device dictionary
         :param command_tuple: (command, value), can also be a string for a final command
         :return string or list, depending if dict[command] is a list or a string
         """
@@ -634,8 +627,8 @@ class LogFile:
         """
 
         self.LOG_FORMAT = "%(levelname)s %(asctime)s in function %(funcName)s - %(message)s"
-        self.file_PATH = os.path.normpath(os.path.realpath(__file__)[:-21] + "/Logfiles/QTC_Logfile.log") # Filepath to Logfile directory
-        self.file_directory = os.path.normpath(os.path.realpath(__file__)[:-21] + "/Logfiles")
+        self.file_PATH = os.path.normpath(os.path.realpath(__file__)[:38] + "/Logfiles/QTC_Logfile.log") # Filepath to Logfile directory
+        self.file_directory = os.path.normpath(os.path.realpath(__file__)[:38] + "/Logfiles")
         self.logging_level = logging_level
         self.log_LEVELS = {"NOTSET": 0, "DEBUG": 10, "INFO": 20, "WARNING": 30, "ERROR": 40, "CRITICAL": 50}
 
@@ -1105,10 +1098,6 @@ class table_control_class:
         '''
         Moves to a specific strip
 
-        :param strip:
-        :param V0:
-        :param T:
-        :param pad_file:
         :param transfomation_class:
         :param height_movement: How much should the table move down
         :return: None or errorcode
@@ -1368,7 +1357,6 @@ class switching_control:
     def pick_switch_response(self, device, current_switching):
         '''
         This function picks the string response and returns a list.
-        :param device:
         :param current_switching: is a string containing the current switching
 
         '''
@@ -1417,7 +1405,6 @@ class switching_control:
         '''
         Fancy name, but just sends the swithing command
 
-        :param device:
         :param config: the list of nodes which need to be switched
         '''
         # TODO: check when switching was not possible that the programm shutsdown! Now the due to the brandbox this is switched off
