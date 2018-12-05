@@ -372,6 +372,7 @@ class stripscan_class:
                     else:
                         break
 
+
     def __do_simple_measurement(self, str_name, device, xvalue = -1, samples = 5, write_to_main = True):
         '''
          Does a simple measurement - really simple. Only acquire some values and build the mean of it

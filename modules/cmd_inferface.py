@@ -3,6 +3,7 @@
 import cmd, types
 from threading import Thread
 
+
 class DAQShell(cmd.Cmd):
     """This class is for the commandline interface of the DAQ software.
     Every function stated with 'do_' will be executable in the unidaq shell.

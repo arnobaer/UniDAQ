@@ -17,6 +17,7 @@ message_from_main = Queue.Queue()
 queue_to_GUI = Queue.Queue()
 
 
+
 class measurement_event_loop:
     ''' This class is for starting and managing the event loop fro the measurements. It starts the syncronised connection betweent ifself and the
         GUI event loop. Message based on dictionaries. '''

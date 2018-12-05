@@ -13,6 +13,7 @@ hf = help_functions()
 l = logging.getLogger(__name__)
 
 
+
 class stripanalysis:
     """Class which provides all necessary functions for bad strip detection, for more information on its capabilites
     look at the reference manual. Written by Dominic Bloech, based on Manfred Valentan"""

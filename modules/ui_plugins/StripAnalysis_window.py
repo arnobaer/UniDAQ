@@ -10,6 +10,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from random import randint
 
+
 from .. import utilities
 
 l = logging.getLogger(__name__)

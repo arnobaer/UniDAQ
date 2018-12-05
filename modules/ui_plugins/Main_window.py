@@ -357,6 +357,7 @@ class Main_window:
                 fileDialog = QFileDialog()
                 file = fileDialog.getSaveFileName()
 
+
                 if file[0]:
                     # gets me all settings which are to be saved
                     hf.write_init_file(file[0], self.variables.ui_plugins["Settings_window"].get_all_settings())

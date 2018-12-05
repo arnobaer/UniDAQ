@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import *
 from .. import engineering_notation as en
 import time
 
+
 from .. import utilities
 l = logging.getLogger(__name__)
 

@@ -262,6 +262,7 @@ class VisaConnectWizard:
                         #self.close_connections(instrument) # Closes the connection to the not responding instruments
                 return 0
 
+
             else:
                 try:
                     return self.myInstruments[number].query(str(command))

@@ -85,6 +85,7 @@ class GUI_classes(GUI_event_loop, QWidget):
             pq.setConfigOption('background', 'w')
             pq.setConfigOption('foreground', 'k')
 
+
         sleep(0.2) # That gives the threads time to initialize all values before missmatch in gui can occur
 
         # Run plugins and generate a widget for every plugin

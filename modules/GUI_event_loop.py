@@ -118,6 +118,7 @@ class GUI_event_loop:
 
             elif event == "CLOSE_PROGRAM":
 
+
                 if not self.measurement_running: #Prevents closing the program if a measurement is currently running
                     order = {"Status": {"CLOSE": True}}
                     self.close_program = True

@@ -7,6 +7,7 @@ vcw = VisaConnectWizard()
 
 vcw.show_instruments()
 
+
 print "Select resource"
 device_number = raw_input("Number: ")
 
