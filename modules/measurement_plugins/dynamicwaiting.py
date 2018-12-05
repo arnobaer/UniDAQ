@@ -145,3 +145,4 @@ class dynamicwaiting_class:
         xvalues = [interval*x for x in range(len(yvalues))]
 
         return xvalues, yvalues
+
