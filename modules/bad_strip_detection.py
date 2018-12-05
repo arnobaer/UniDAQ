@@ -1,13 +1,16 @@
 # This python program gives functions for bad strip detection of silicon based sensors
 # It is based on the bad strip detection of M. Valentan. Improvements done by D. Bloech
 
-import yaml
 import logging
 import os
-import numpy as np
-from utilities import help_functions
+
 import numba as nb
+import numpy as np
+import yaml
 from scipy.stats import norm, stats
+
+from utilities import help_functions
+
 hf = help_functions()
 
 l = logging.getLogger(__name__)
@@ -219,8 +222,7 @@ class stripanalysis:
         This functions calls the actual online bad strip detection analysis stripts and will return a False if one or
         more strips show bad behavior.
 
-        :param events: Is a dictionary containing key: measurement and value: the measured value.
-                       if it is a list of dictionaries, the program will interpret cross relations as well
+        :param list_of_strip_dicts:
         :return:
         """
         pass
@@ -286,8 +288,8 @@ class stripanalysis:
         """Calculates the normal distrubution of a dataset and returns the mu and std.
         If results (dict) is given, then the data will be appended there
 
-        :param data numpyarray containing the data
-        :param results optional parameter which stores the results somewhere
+        :param bins:
+        :param ydata:
         :return a tuple of data (mu, std, [pdfdata])
         """
         # Calculate the mean and std
