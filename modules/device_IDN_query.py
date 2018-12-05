@@ -1,5 +1,6 @@
 # This file is for checking the IDN of devices
 
+import visa
 from VisaConnectWizard import *
 
 vcw = VisaConnectWizard()

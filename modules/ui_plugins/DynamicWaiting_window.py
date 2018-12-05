@@ -1,9 +1,15 @@
-import logging
 import os
-import time
+import os.path as osp
+import sys, importlib, logging
 
+import numpy as np
 import pyqtgraph as pq
+from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from random import randint
+import time
 
 from .. import utilities
 
@@ -92,10 +98,11 @@ class DynamicWaiting_window:
 
 
         self.final_job.update({"dynamicwaiting": {"StartVolt": 0,
-                                                  "EndVolt": float(self.dynamic.complience_IV.value()),
-                                                  "Steps": float(self.dynamic.complience_IV.value()),
-                                                  "Complience": float(self.dynamic.complience_IV.value()),
-                                                  "num_of_points": 30,
+                                                  "EndVolt": float(self.dynamic.max_voltage_IV.value()),
+                                                  "Steps": float(self.dynamic.voltage_steps_IV.value()),
+                                                  "Compliance": float(self.dynamic.compliance_IV.value()),
+                                                  "Samples": float(self.dynamic.samples_spinBox.value()),
+                                                  "Interval": float(self.dynamic.interval_spinbox.value()),
                                                   "Save_data": True,
                                                   }
                                    }

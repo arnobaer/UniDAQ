@@ -1,16 +1,18 @@
+
+import ast
 import json
-import logging
 import os
 import os.path as osp
-import sys
+import sys, importlib, logging
 
 import numpy as np
 import pyqtgraph as pq
-from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
 from .. import engineering_notation as en
+
 from .. import utilities
 
 l = logging.getLogger(__name__)
@@ -82,7 +84,7 @@ class Main_window:
         self.settings()
         self.start_menu()
         self.temphum_plot()
-        self.table_control()
+        self.table_control_obj = self.table_control()
         self.table_move = self.table_move()
 
         # Plots
