@@ -50,7 +50,8 @@
         - Cac_scan
         - Idark
         - Rint_scan
-        - waitingtime_scan
+        - dynamicwaiting
+
 
     measurement_order:
         - test_mode

@@ -98,10 +98,11 @@ class DynamicWaiting_window:
 
 
         self.final_job.update({"dynamicwaiting": {"StartVolt": 0,
-                                                  "EndVolt": float(self.dynamic.complience_IV.value()),
-                                                  "Steps": float(self.dynamic.complience_IV.value()),
-                                                  "Complience": float(self.dynamic.complience_IV.value()),
-                                                  "num_of_points": 30,
+                                                  "EndVolt": float(self.dynamic.max_voltage_IV.value()),
+                                                  "Steps": float(self.dynamic.voltage_steps_IV.value()),
+                                                  "Compliance": float(self.dynamic.compliance_IV.value()),
+                                                  "Samples": float(self.dynamic.samples_spinBox.value()),
+                                                  "Interval": float(self.dynamic.interval_spinbox.value()),
                                                   "Save_data": True,
                                                   }
                                    }
