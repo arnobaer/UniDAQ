@@ -580,6 +580,7 @@ class newThread(threading.Thread):  # This class inherite the functions of the t
         """
         return object__(*args)
 
+
     def run(self):
         """Starts running the thread"""
         print ("Starting thread: " + self.name) # run() is a member function of Thread() class. This will be called, when object thread will be started via thread.start()
