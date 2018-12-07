@@ -144,10 +144,17 @@ class GUI_event_loop:
                 if type(message[measurement][0]) is not list:
                     self.meas_data[measurement][0] = np.append(self.meas_data[measurement][0], message[measurement][0])
                     self.meas_data[measurement][1] = np.append(self.meas_data[measurement][1], message[measurement][1])
-                else:
-                    self.meas_data[measurement][0] = message[measurement][0]
-                    self.meas_data[measurement][1] = message[measurement][1]
-
+                else:  # TODO: If something is not working with data delivered, dynamic waiting time measurement has changed here
+                    try:
+                        self.meas_data[measurement][0].append(np.array(message[measurement][0]))
+                        self.meas_data[measurement][1].append(np.array(message[measurement][1]))
+                    except Exception as e:
+                        l.warning("Warning passed wrong dimensional arrays to array. Array must have same dimensions. Errorcode: {error!s}. "
+                                  "WARNING: This error can happen ones in the beginning, when the datatype changes or a np array is not yet initialized".format(error=e))
+                        self.meas_data[measurement][0] = []
+                        self.meas_data[measurement][0].append(np.array(message[measurement][0]))
+                        self.meas_data[measurement][1] = []
+                        self.meas_data[measurement][1].append(np.array(message[measurement][1]))
             else:
                 l.error("Measurement " + str(measurement) + " could not be found in active data arrays. Data discarded.")
                 print "Measurement " + str(measurement) + " could not be found in active data arrays. Data discarded."

@@ -280,7 +280,8 @@ class stripscan_class:
                                     value = getattr(self, "do_"+measurement)(current_strip, self.samples)
 
                                     # In the end do a quick bad strip detection
-                                    badstrip = self.main.main.analysis.do_online_singlestrip_analysis((measurement, value))
+                                    #badstrip = self.main.main.analysis.do_online_singlestrip_analysis((measurement, value))
+                                    badstrip = False
                                     if badstrip:
                                         l.info("Badstrip detected at strip: " + str(current_strip) + " Error code: " + str(badstrip))
                                         self.main.queue_to_main.put({"Thresholderror": "Badstrip detected at strip: " + str(current_strip) + " Error code: " + str(badstrip)})

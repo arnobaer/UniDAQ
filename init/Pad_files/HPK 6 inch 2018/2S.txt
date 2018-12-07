@@ -4,11 +4,11 @@ Campaign: Hamamatsu 6inch 2S
 Creator: Dominic Bloech 03.12.2018
 				
 reference pad: 2			
-reference pad: 1524					
+reference pad: 1017					
 reference pad: 1016
 
 # Additional parameters
-implant_length: 50206
+implant_length: 0
 metal_width: 32
 implant_width: 22
 metal_length: 49504

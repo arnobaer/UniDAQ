@@ -823,7 +823,8 @@ class Main_window:
 
         self.variables.add_update_function(update)
 
-    def temphum_plot(self):
+    @hf.raise_exception
+    def temphum_plot(self, kwargs = None):
         '''Also button corresponding to temphum plot included'''
 
         def valuechange():
@@ -839,13 +840,20 @@ class Main_window:
             self.variables.default_values_dict["Defaults"]["current_hummin"] = hummin.value()
             self.variables.default_values_dict["Defaults"]["current_hummax"] = hummax.value()
 
+            max = hf.build_command(self.variables.devices_dict["temphum_controller"], ("set_hummax", hummax.value()))
+            min = hf.build_command(self.variables.devices_dict["temphum_controller"], ("set_hummin", hummin.value()))
+
+            self.variables.vcw.write(self.variables.devices_dict["temphum_controller"], max)
+            self.variables.vcw.write(self.variables.devices_dict["temphum_controller"], min)
+
+
         def dry_air_action():
             if dry_air_btn.isChecked():
                 device_dict = self.variables.devices_dict["temphum_controller"]
                 try:
-                    command = self.variables.build_command(device_dict, ("set_environement_control", "ON"))
-                    answer = self.variables.vcw.query(device_dict, command)
-                    if answer.upper().strip() != "DONE":
+                    command = hf.build_command(device_dict, ("set_environement_control", "ON"))
+                    answer = self.variables.vcw.write(device_dict, command)
+                    if answer == -1:
                         l.error("The environement controller did not responsed accordingly. Answer: " +str(answer).strip())
                         self.variables.message_to_main.put({"RequestError": "The environement controller did not responsed accordingly. Answer: " + str(answer).strip()})
                         return 0
@@ -859,9 +867,9 @@ class Main_window:
             else:
                 device_dict = self.variables.devices_dict["temphum_controller"]
                 try:
-                    command = self.variables.build_command(device_dict, ("set_environement_control", "OFF"))
-                    answer = self.variables.vcw.query(device_dict, command)
-                    if answer.upper().strip() != "DONE":
+                    command = hf.build_command(device_dict, ("set_environement_control", "OFF"))
+                    answer = self.variables.vcw.write(device_dict, command)
+                    if answer == -1:
                         l.error("The environement controller did not responsed accordingly. Answer: " + str(answer).strip())
                         self.variables.message_to_main.put({"RequestError": "The environement controller did not responsed accordingly. Answer: " + str(answer).strip()})
                         return 0

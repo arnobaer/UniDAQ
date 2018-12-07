@@ -405,8 +405,8 @@ class update_defaults_dict:
                 "Bad_strips": 0,
                 "Measurement_running": False,
                 "Alignment": False,
-                "trans_matrix": np.array([[  1.00000000e+00,  -2.77555756e-17,   0.00000000e+00],
-                                          [  0.00000000e+00,   1.00000000e+00,   0.00000000e+00]]),
+                "trans_matrix": np.array([[ 1.00334061, -0.00487155,  0.        ],
+                                            [ 0.00558647,  0.99961286,  0.        ]]),
                 "Environment_status": False,
                 "external_lights": False,
                 "internal_lights": False,
@@ -448,10 +448,11 @@ class update_defaults_dict:
                 "joystick": False,
                 "zlock":    True,
                 "table_is_moving": False,
-                "V0": np.array([  39080.17955,  129591.,         2675.     ]),
+                "V0": np.array([  45926.75118,  118356.47254,    4958.22845]),
                 "current_strip": -1,
                 "strip_scan_time": 10,
-                "IVCV_time": 300
+                "IVCV_time": 300,
+                "Rint_MinMax": [-1.,1.,0.1]
                 }
 
 

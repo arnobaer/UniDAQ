@@ -241,7 +241,7 @@ class measurement_event_loop:
 
 
     def init_devices(self, args=None):
-        '''This function makes the necessary configuration for all devices before any measuremnt can be conducted'''
+        '''This function makes the necessary configuration for all devices before any measurement can be conducted'''
         # Not very pretty
         self.message_to_main.put({"Info": "Initializing of instruments..."})
 

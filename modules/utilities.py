@@ -1337,6 +1337,8 @@ class switching_control:
                 for devices in self.devices.values():
                     if name in devices["Display_name"]:
                         device = devices
+                        if not switch_list:
+                            switch_list = []
                         switching_success = self.change_switching(device, switch_list)
                         device_found = True
                 if not device_found:
@@ -1509,6 +1511,31 @@ class switching_control:
             except Exception as e:
                 #print e
                 pass
+
+
+
+class show_cursor_position:
+    """This class provides a simple way to tooltip a plot item of type pyqtgraph plots"""
+
+    def __init__(self, plotobject):
+
+        self.plotobject = plotobject
+        self.plotItem = plotobject.getPlotItem()
+        self.tooltip_text = pg.TextItem(text='', color=(176, 23, 31))
+        self.tooltip_text.hide()
+        plotobject.addItem(self.tooltip_text, ignoreBounds=True)
+        self.proxy = pg.SignalProxy(self.plotobject.scene().sigMouseMoved, rateLimit=30, slot=self.onMove)
+
+    def onMove(self, pos):
+        mousePoint = self.plotItem.vb.mapSceneToView(pos[0])
+        #self.plotItem.mapToDevice(mousePoint)
+        if mousePoint:
+            self.tooltip_text.setText("     x={!s}\n     y={!s}".format(mousePoint.x(), mousePoint.y()))
+            self.tooltip_text.setPos(mousePoint)
+            self.tooltip_text.show()
+
+        else:
+            self.tooltip_text.hide()
 
 if __name__ == "__main__":
 
