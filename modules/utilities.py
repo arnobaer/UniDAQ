@@ -1515,16 +1515,19 @@ class switching_control:
 
 
 class show_cursor_position:
-    """This class provides a simple way to tooltip a plot item of type pyqtgraph plots"""
+    """This class provides a simple way to tooltip a plot item of type pyqtgraph plots (not yet finished)"""
 
     def __init__(self, plotobject):
+        """
 
-        self.plotobject = plotobject
+        :param plotobject: The Plot object
+        """
+
         self.plotItem = plotobject.getPlotItem()
         self.tooltip_text = pg.TextItem(text='', color=(176, 23, 31))
         self.tooltip_text.hide()
         plotobject.addItem(self.tooltip_text, ignoreBounds=True)
-        self.proxy = pg.SignalProxy(self.plotobject.scene().sigMouseMoved, rateLimit=30, slot=self.onMove)
+        self.proxy = pg.SignalProxy(plotobject.scene().sigMouseMoved, rateLimit=30, slot=self.onMove)
 
     def onMove(self, pos):
         mousePoint = self.plotItem.vb.mapSceneToView(pos[0])

@@ -287,7 +287,7 @@ class stripanalysis:
         """Calculates the normal distrubution of a dataset and returns the mu and std.
         If results (dict) is given, then the data will be appended there
 
-        :param data numpyarray containing the data
+        :param ydata numpyarray containing the data
         :param results optional parameter which stores the results somewhere
         :return a tuple of data (mu, std, [pdfdata])
         """
