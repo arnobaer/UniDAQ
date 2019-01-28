@@ -105,8 +105,6 @@ shell.start()
 #threads.append(shellThread)
 
 
-
-
 print "Start rendering GUI..."
 GUI.app.exec_() # Starts the actual event loop for the GUI
 
